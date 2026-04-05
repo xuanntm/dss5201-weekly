@@ -13,7 +13,6 @@ This project focuses on data analysis and scripting using Jupyter Notebooks (`.i
 
 ## Create custom environment and install necessary libraries
 ```shell
-cd src
 python3.12 -m venv venv-dss5201
 source venv-dss5201/bin/activate
 pip install -r requirements.txt

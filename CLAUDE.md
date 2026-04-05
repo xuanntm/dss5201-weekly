@@ -5,7 +5,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Environment Setup
 
 ```shell
-cd src
 python3.12 -m venv venv-dss5201
 source venv-dss5201/bin/activate
 pip install -r requirements.txt
@@ -16,10 +15,10 @@ pip install -r requirements.txt
 Execute a notebook in-place (runs all cells and saves output). Must use the venv's Python directly — the system `jupyter` binary uses a different Python and will fail:
 ```shell
 cd src
-venv-dss5201/bin/python -m nbconvert --execute --inplace [filename].ipynb
+../venv-dss5201/bin/python -m nbconvert --execute --inplace [filename].ipynb
 ```
 
-A `data/` symlink exists inside `src/` pointing to `../data/` so notebooks can resolve `data/` paths correctly when executed from `src/`.
+Notebooks load datasets from `../data/` (the root `data/` folder) since they run from within `src/`.
 
 ## Code Style Rules
 
