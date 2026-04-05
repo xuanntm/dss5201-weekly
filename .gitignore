@@ -209,3 +209,6 @@ __marimo__/
 
 # raw data files
 data/
+
+# custom virtual environment
+src/venv-dss5201
