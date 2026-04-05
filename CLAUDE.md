@@ -26,6 +26,25 @@ Notebooks load datasets from `../data/` (the root `data/` folder) since they run
 - Each major code block must be preceded by a markdown cell explaining the goal of that section.
 - Prefer `pandas`, `matplotlib`, and `seaborn` for data tasks unless `plotnine` is specifically required.
 
+## Local AI Assistant (aider + Ollama)
+
+Aider is installed in the venv and configured to use a local Ollama model. Start it from the project root:
+
+```shell
+source venv-dss5201/bin/activate
+aider src/week10_lecture.ipynb   # work on a specific notebook
+aider                            # open with no files, add them interactively
+```
+
+Config is in `.aider.conf.yml`. Model: `qwen2.5-coder:7b` (~5GB, runs comfortably on 18GB).
+To switch model: edit the `model:` line in `.aider.conf.yml`.
+
+Ollama resource caps (set via launchctl, survive restarts):
+- `OLLAMA_MAX_LOADED_MODELS=1` — only one model in RAM at a time
+- `OLLAMA_NUM_PARALLEL=1` — no concurrent inference requests
+- `OLLAMA_NUM_THREAD=6` — leaves 2 CPU cores free for the OS
+- `OLLAMA_FLASH_ATTENTION=1` — more efficient attention, reduces peak memory
+
 ## Architecture
 
 - `src/` — All Jupyter notebooks (`weekNN_lecture.ipynb`) and their rendered HTML exports.

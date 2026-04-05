@@ -1,0 +1,38 @@
+##############################################################
+# Aider config — tuned for M3 Pro 18GB + local Ollama
+# Docs: https://aider.chat/docs/config/aider_conf.html
+##############################################################
+
+# ── Model ────────────────────────────────────────────────────
+# Use the local Ollama qwen2.5-coder:7b model (~5GB, fits easily in 18GB).
+# Switch to ollama/qwen2.5-coder:14b if you want higher quality and can spare ~9GB.
+model: ollama/qwen2.5-coder:7b
+
+# Ollama runs on localhost; aider uses the OpenAI-compatible endpoint.
+openai-api-base: http://localhost:11434/v1
+openai-api-key: ollama
+
+# ── Context / token limits (reduces RAM pressure) ────────────
+# Repo map: how many tokens aider spends summarising the codebase.
+# 1024 is enough for this small repo without overloading the model.
+map-tokens: 1024
+
+# Maximum tokens kept in chat history before old messages are dropped.
+# Keeps the context window from filling up and slowing inference.
+max-chat-history-tokens: 2048
+
+# ── Git behaviour ────────────────────────────────────────────
+# Do not auto-commit changes — review diffs manually before committing.
+auto-commits: false
+
+# Do not dirty-commit unstaged changes before an aider session.
+dirty-commits: false
+
+# ── Scope guard ──────────────────────────────────────────────
+# Only index files that git is tracking — ignores venv, data, __pycache__, etc.
+# Combined with .aiderignore this keeps aider focused on src/ notebooks only.
+gitignore: true
+
+# ── Output ───────────────────────────────────────────────────
+# Keep terminal output concise.
+stream: true
